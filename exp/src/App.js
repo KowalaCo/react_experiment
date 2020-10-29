@@ -1,11 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      flip: true
+    }
+  }
+
+  flip = () => {
+    this.setState(prevState => ({
+      flip: !prevState.flip
+    }))
+  }
+
+  getImgStyle = () => {
+    if (this.state.flip){
+      return {transform: 'scaleX(-1)', header: 'scaleX(-1)'}
+    } else {
+      return {}
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <img onClick={this.flip} style={this.getImgStyle()} src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -17,9 +40,9 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;

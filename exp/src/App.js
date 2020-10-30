@@ -7,7 +7,8 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      flip: true
+      flip: true,
+      backgroundRGB: 'rgb(0, 0, 0)'
     }
   }
 
@@ -15,6 +16,10 @@ class App extends React.Component {
     this.setState(prevState => ({
       flip: !prevState.flip
     }))
+  }
+
+  randomizeBackground = () => {
+    this.setState({backgroundRGB: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`})
   }
 
   getImgStyle = () => {
@@ -27,12 +32,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{backgroundColor: this.state.backgroundRGB}}>
         <img onClick={this.flip} style={this.getImgStyle()} src={logo} className="App-logo" alt="logo" />
         <p>
           <code>{this.state.flip ? 'flipped' : 'not flipped'}</code>
         </p>
         <button onClick={this.flip}>flip</button>
+        <button onClick={this.randomizeBackground}>randomize</button>
       </div>
     );
   }

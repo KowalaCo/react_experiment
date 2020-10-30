@@ -30,16 +30,9 @@ class App extends React.Component {
       <div className="App">
         <img onClick={this.flip} style={this.getImgStyle()} src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <code>{this.state.flip ? 'flipped' : 'not flipped'}</code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={this.flip}>flip</button>
       </div>
     );
   }
